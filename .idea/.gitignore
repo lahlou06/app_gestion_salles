@@ -1,0 +1,10 @@
+# Default ignored files
+/../../ app_gestion_salles./.idea/shelf/
+/../../ app_gestion_salles./.idea/workspace.xml
+# Ignored default folder with query files
+/../../ app_gestion_salles./.idea/queries/
+# Datasource local storage ignored files
+/../../ app_gestion_salles./.idea/dataSources/
+/../../ app_gestion_salles./.idea/dataSources.local.xml
+# Editor-based HTTP Client requests
+/../../ app_gestion_salles./.idea/httpRequests/
