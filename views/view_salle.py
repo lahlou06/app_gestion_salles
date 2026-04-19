@@ -26,3 +26,6 @@ class ViewSalle(ctk.CTk):
         self.label.grid(row=3, column=0, padx=10, pady=5)
         self.entry_capacite = ctk.CTkEntry(self.frame_info)
         self.entry_capacite.grid(row=3, column=1, padx=10, pady=5)
+
+        self.frame_actions = ctk.CTkFrame(self)
+        self.frame_actions.pack(pady=10)
