@@ -32,7 +32,14 @@ def update_salle(self, salle):
     connection.commit()
     cursor.close()
     connection.close()
-
+def delete_salle(self, code):
+    connection = self.get_connection()
+    cursor = connection.cursor()
+    requete = "DELETE FROM salle WHERE code=%s"
+    cursor.execute(requete, (code,))
+    connection.commit()
+    cursor.close()
+    connection.close()
 
 
 
