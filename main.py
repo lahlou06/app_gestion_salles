@@ -12,3 +12,8 @@ dao = DataSalle()
 salle = Salle("A06", "Salle Info", "Laboratoire", 30)
 dao.insert_salle(salle)
 print("salle ajoutee")
+from data.dao_salle import DataSalle
+
+dao = DataSalle()
+dao.delete_salle("A06")
+print("salle supprimee")
