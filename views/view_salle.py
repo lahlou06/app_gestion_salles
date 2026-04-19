@@ -4,6 +4,28 @@ from services.service_salle import ServiceSalle
 class ViewSalle(ctk.CTk):
     def __init__(self):
         super().__init__()
+        import tkinter.ttk as ttk
+        self.frame_liste = ctk.CTkFrame(self)
+        self.frame_liste.pack(pady=10)
+
+        self.table = ttk.Treeview(
+            self.frame_liste,
+            columns=("code", "libelle", "type", "capacite"),
+            show="headings"
+        )
+
+        self.table.heading("code", text="Code")
+        self.table.heading("libelle", text="Libelle")
+        self.table.heading("type", text="Type")
+        self.table.heading("capacite", text="Capacite")
+
+        self.table.column("code", width=80)
+        self.table.column("libelle", width=150)
+        self.table.column("type", width=120)
+        self.table.column("capacite", width=100)
+
+        self.table.pack()
+
         self.service_salle = ServiceSalle()
         self.frame_info = ctk.CTkFrame(self)
         self.frame_info.pack(pady=10, padx=10, fill="x")
@@ -41,3 +63,4 @@ class ViewSalle(ctk.CTk):
 
         self.btn_rechercher = ctk.CTkButton(self.frame_actions, text="rechercher")
         self.btn_rechercher.grid(row=0, column=3, padx=10)
+
