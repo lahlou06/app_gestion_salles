@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3d4df9a-18b9-40e5-a025-8ba29b30ad0f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../ app_gestion_salles/Data/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ app_gestion_salles/Data/dao_salle.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ app_gestion_salles/models/Salle.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ app_gestion_salles/services/services_salle.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ app_gestion_salles/views/view_salle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ app_gestion_salles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ app_gestion_salles/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +37,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776554391458</updated>
-      <workItem from="1776554392481" duration="1481000" />
+      <workItem from="1776554392481" duration="2813000" />
     </task>
     <servers />
   </component>
