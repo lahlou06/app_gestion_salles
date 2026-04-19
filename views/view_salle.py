@@ -1,10 +1,23 @@
 import customtkinter as ctk
+import tkinter.ttk as ttk
 from services.service_salle import ServiceSalle
+from models.salle import Salle
+
 
 class ViewSalle(ctk.CTk):
     def __init__(self):
         super().__init__()
-        import tkinter.ttk as ttk
+        self.table.pack()
+
+        def ajouter_salle(self):
+            code = self.entry_code.get()
+            libelle = self.entry_libelle.get()
+            type_salle = self.entry_type.get()
+            capacite = int(self.entry_capacite.get())
+
+            salle = Salle(code, libelle, type_salle, capacite)
+            self.service_salle.ajouter_salle(salle)
+
         self.frame_liste = ctk.CTkFrame(self)
         self.frame_liste.pack(pady=10)
 
@@ -52,7 +65,7 @@ class ViewSalle(ctk.CTk):
         self.frame_actions = ctk.CTkFrame(self)
         self.frame_actions.pack(pady=10)
 
-        self.btn_ajouter = ctk.CTkButton(self.frame_actions, text="ajouter")
+        self.btn_ajouter = ctk.CTkButton(self.frame_actions, text="ajouter", command=self.ajouter_salle)
         self.btn_ajouter.grid(row=0, column=0, padx=10)
 
         self.btn_modifier = ctk.CtkButton(self.frame_actions, text="modifier")
@@ -63,4 +76,3 @@ class ViewSalle(ctk.CTk):
 
         self.btn_rechercher = ctk.CTkButton(self.frame_actions, text="rechercher")
         self.btn_rechercher.grid(row=0, column=3, padx=10)
-
