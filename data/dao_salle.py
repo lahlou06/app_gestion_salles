@@ -2,4 +2,14 @@ import json
 import mysql.connector
 class DataSalle:
     pass
+def get_connection(self):
+    with open("data/config.json", "r") as fichier:
+        config = json.load(fichier)
+    connection = mysql.connector.connect(
+        host=config["host"],
+        user=config["user"],
+        password=config["password"],
+        database=config["database"],
+    )
+    return connection
 
