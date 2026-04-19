@@ -29,3 +29,10 @@ from data.dao_salle import DataSalle
 dao = DataSalle()
 resultat = dao.get_salle("A01")
 print(resultat)
+from data.dao_salle import DataSalle
+
+dao = DataSalle()
+resultats = dao.get_salles()
+
+for salle in resultats:
+    print(salle)
