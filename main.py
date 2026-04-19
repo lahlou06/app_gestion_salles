@@ -27,7 +27,7 @@ print("salle modifiee")
 from data.dao_salle import DataSalle
 
 dao = DataSalle()
-resultat = dao.get_salle("A01")
+resultat = dao.get_salle("A06")
 print(resultat)
 from data.dao_salle import DataSalle
 
