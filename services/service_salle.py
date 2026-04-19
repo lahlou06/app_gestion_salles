@@ -1,3 +1,8 @@
+from enum import nonmember
+
+from mysql.connector.constants import flag_is_set
+
+
 class ServiceSalle:
     pass
 from data.dao_salle import DataSalle
@@ -25,3 +30,9 @@ class ServiceSalle:
             self.dao_salle.delete_salle(code)
             return True, "Salle supprimee avec succes"
         return False, "Erreur lors de la suppression"
+    def rechercher_salle(self, code):
+        if code:
+            resultat = self.dao_salle.get_salle(code)
+            return resultat
+        return None
+
