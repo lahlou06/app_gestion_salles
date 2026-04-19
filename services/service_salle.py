@@ -35,4 +35,7 @@ class ServiceSalle:
             resultat = self.dao_salle.get_salle(code)
             return resultat
         return None
+    def recuperer_salle(self):
+        return self.dao_salle.get_salle("A06")
+
 
