@@ -1,120 +1,141 @@
 import customtkinter as ctk
-from tkinter import ttk, messagebox
+from tkinter import messagebox
+from tkinter import ttk
 
 from models.salle import Salle
 from services.service_salle import ServiceSalle
 
-
 class ViewSalle(ctk.CTk):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
+
         self.title("Gestion des salles")
-        self.geometry("750x500")
+        self.geometry("700x500")
 
         self.service_salle = ServiceSalle()
 
         self.creer_widgets()
         self.lister_salles()
 
-        def creer_widgets(self):
-            # Cadre informations
-            self.cadreInfo = ctk.CTkFrame(self, corner_radius=10)
-            self.cadreInfo.pack(padx=10, pady=10, fill="x")
+    def creer_widgets(self):
+        # Cadre informations
+        self.cadreInfo = ctk.CTkFrame(self, corner_radius=10)
+        self.cadreInfo.pack(pady=10, padx=10, fill="x")
 
-            ctk.CTkLabel(self.cadreInfo, text="Code :").grid(row=0, column=0, padx=10, pady=5, sticky="w")
-            self.entry_code = ctk.CTkEntry(self.cadreInfo)
-            self.entry_code.grid(row=0, column=1, padx=10, pady=5)
+        ctk.CTkLabel(self.cadreInfo, text="Code").grid(row=0, column=0, padx=10, pady=5)
+        self.entry_code = ctk.CTkEntry(self.cadreInfo)
+        self.entry_code.grid(row=0, column=1, padx=10, pady=5)
 
-            ctk.CTkLabel(self.cadreInfo, text="Description :").grid(row=1, column=0, padx=10, pady=5, sticky="w")
-            self.entry_description = ctk.CTkEntry(self.cadreInfo)
-            self.entry_description.grid(row=1, column=1, padx=10, pady=5)
+        ctk.CTkLabel(self.cadreInfo, text="Libellé").grid(row=1, column=0, padx=10, pady=5)
+        self.entry_libelle = ctk.CTkEntry(self.cadreInfo)
+        self.entry_libelle.grid(row=1, column=1, padx=10, pady=5)
 
-            ctk.CTkLabel(self.cadreInfo, text="Categorie :").grid(row=2, column=0, padx=10, pady=5, sticky="w")
-            self.entry_categorie = ctk.CTkEntry(self.cadreInfo)
-            self.entry_categorie.grid(row=2, column=1, padx=10, pady=5)
+        ctk.CTkLabel(self.cadreInfo, text="Type").grid(row=2, column=0, padx=10, pady=5)
+        self.entry_type = ctk.CTkEntry(self.cadreInfo)
+        self.entry_type.grid(row=2, column=1, padx=10, pady=5)
 
-            ctk.CTkLabel(self.cadreInfo, text="Capacite :").grid(row=3, column=0, padx=10, pady=5, sticky="w")
-            self.entry_capacite = ctk.CTkEntry(self.cadreInfo)
-            self.entry_capacite.grid(row=3, column=1, padx=10, pady=5)
-            # Cadre actions
-            self.cadreActions = ctk.CTkFrame(self, corner_radius=10)
-            self.cadreActions.pack(padx=10, pady=10, fill="x")
+        ctk.CTkLabel(self.cadreInfo, text="Capacité").grid(row=3, column=0, padx=10, pady=5)
+        self.entry_capacite = ctk.CTkEntry(self.cadreInfo)
+        self.entry_capacite.grid(row=3, column=1, padx=10, pady=5)
 
-            self.btn_ajouter = ctk.CTkButton(self.cadreActions, text="Ajouter", command=self.ajouter_salle)
-            self.btn_ajouter.pack(side="left", padx=10, pady=10)
+        # Cadre actions
+        self.cadreActions = ctk.CTkFrame(self, corner_radius=10)
+        self.cadreActions.pack(pady=10, padx=10, fill="x")
 
-            self.btn_modifier = ctk.CTkButton(self.cadreActions, text="Modifier", command=self.modifier_salle)
-            self.btn_modifier.pack(side="left", padx=10, pady=10)
+        self.btn_ajouter = ctk.CTkButton(self.cadreActions, text="Ajouter", command=self.ajouter_salle)
+        self.btn_ajouter.grid(row=0, column=0, padx=10, pady=10)
 
-            self.btn_supprimer = ctk.CTkButton(self.cadreActions, text="Supprimer", command=self.supprimer_salle)
-            self.btn_supprimer.pack(side="left", padx=10, pady=10)
+        self.btn_supprimer = ctk.CTkButton(self.cadreActions, text="Supprimer", command=self.supprimer_salle)
+        self.btn_supprimer.grid(row=0, column=1, padx=10, pady=10)
 
-            self.btn_rechercher = ctk.CTkButton(self.cadreActions, text="Rechercher", command=self.rechercher_salle)
-            self.btn_rechercher.pack(side="left", padx=10, pady=10)
+        self.btn_modifier = ctk.CTkButton(self.cadreActions, text="Modifier", command=self.modifier_salle)
+        self.btn_modifier.grid(row=0, column=2, padx=10, pady=10)
 
-            def ajouter_salle(self):
-                salle = Salle(
-                    self.entry_code.get(),
-                    self.entry_description.get(),
-                    self.entry_categorie.get(),
-                    int(self.entry_capacite.get())
-                )
-                self.service_salle.ajouter_salle(salle)
+        self.btn_rechercher = ctk.CTkButton(self.cadreActions, text="Rechercher", command=self.rechercher_salle)
+        self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
+
+        # Cadre liste
+        self.cadreList = ctk.CTkFrame(self, corner_radius=10)
+        self.cadreList.pack(pady=10, padx=10, fill="both", expand=True)
+
+        self.treeList = ttk.Treeview(
+            self.cadreList,
+            columns=("code", "libelle", "type", "capacite"),
+            show="headings"
+        )
+
+        self.treeList.heading("code", text="CODE")
+        self.treeList.heading("libelle", text="LIBELLÉ")
+        self.treeList.heading("type", text="TYPE")
+        self.treeList.heading("capacite", text="CAPACITÉ")
+
+        self.treeList.column("code", width=80)
+        self.treeList.column("libelle", width=180)
+        self.treeList.column("type", width=120)
+        self.treeList.column("capacite", width=100)
+
+        self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
+
+    def ajouter_salle(self):
+        try:
+            salle = Salle(
+                self.entry_code.get(),
+                self.entry_libelle.get(),
+                self.entry_type.get(),
+                int(self.entry_capacite.get())
+            )
+            ok, msg = self.service_salle.ajouter_salle(salle)
+            messagebox.showinfo("Résultat", msg)
+            if ok:
                 self.lister_salles()
 
-            def modifier_salle(self):
-                salle = Salle(
-                    self.entry_code.get(),
-                    self.entry_description.get(),
-                    self.entry_categorie.get(),
-                    int(self.entry_capacite.get())
-                )
-                self.service_salle.modifier_salle(salle)
+        except ValueError:
+            messagebox.showerror("Erreur", "La capacité doit être un nombre")
+
+    def modifier_salle(self):
+        try:
+            salle = Salle(
+                self.entry_code.get(),
+                self.entry_libelle.get(),
+                self.entry_type.get(),
+                int(self.entry_capacite.get())
+            )
+            ok, msg = self.service_salle.modifier_salle(salle)
+            messagebox.showinfo("Résultat", msg)
+            if ok:
                 self.lister_salles()
 
-                def supprimer_salle(self):
-                    code = self.entry_code.get()
-                    self.service_salle.supprimer_salle(code)
-                    self.lister_salles()
+        except ValueError:
+            messagebox.showerror("Erreur", "La capacité doit être un nombre")
 
-                    def rechercher_salle(self):
-                        code = self.entry_code.get()
-                        salle = self.service_salle.rechercher_salle(code)
-                        if salle is not None:
-                            self.entry_description.delete(0, "end")
-                            self.entry_description.insert(0, salle.description)
+    def supprimer_salle(self):
+        code = self.entry_code.get()
+        ok, msg = self.service_salle.supprimer_salle(code)
+        messagebox.showinfo("Résultat", msg)
+        if ok:
+            self.lister_salles()
 
-                            self.entry_categorie.delete(0, "end")
-                            self.entry_categorie.insert(0, salle.categorie)
 
-                            self.entry_capacite.delete(0, "end")
-                            self.entry_capacite.insert(0, salle.capacite)
-                            # Cadre Liste des salles
-                            self.cadreList = ctk.CTkFrame(self, corner_radius=10, width=400)
-                            self.cadreList.pack(padx=10, pady=10)
+    def rechercher_salle(self):
+        code = self.entry_code.get()
+        salle = self.service_salle.rechercher_salle(code)
 
-                            self.treeList = ttk.Treeview(
-                                self.cadreList,
-                                columns=("code", "description", "categorie", "capacite"),
-                                show="headings"
-                            )
+        if salle:
+            self.entry_libelle.delete(0, "end")
+            self.entry_libelle.insert(0, salle.libelle)
 
-                            self.treeList.heading("code", text="CODE")
-                            self.treeList.heading("description", text="Description")
-                            self.treeList.heading("categorie", text="Catégorie")
-                            self.treeList.heading("capacite", text="Capacité")
+            self.entry_type.delete(0, "end")
+            self.entry_type.insert(0, salle.type)
 
-                            self.treeList.column("code", width=50)
-                            self.treeList.column("description", width=150)
-                            self.treeList.column("categorie", width=100)
-                            self.treeList.column("capacite", width=100)
+            self.entry_capacite.delete(0, "end")
+            self.entry_capacite.insert(0, salle.capacite)
+        else:
+            messagebox.showerror("Erreur", "Salle non trouvée")
 
-                            self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
+    def lister_salles(self):
+        self.treeList.delete(*self.treeList.get_children())
+        liste = self.service_salle.recuperer_salles()
+        for s in liste:
+            self.treeList.insert("", "end", values=(s.code, s.libelle, s.type, s.capacite))
 
-                            def lister_salles(self):
-                                self.treeList.delete(*self.treeList.get_children())
-                                liste = self.service_salle.recuperer_salles()
 
-                                for s in liste:
-                                    self.treeList.insert("", "end",
-                                                         values=(s.code, s.description, s.categorie, s.capacite))

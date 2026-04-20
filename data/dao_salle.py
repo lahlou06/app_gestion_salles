@@ -1,70 +1,71 @@
 import json
 import mysql.connector
+from models.salle import Salle
 
 class DataSalle:
-    def get_connection(self):
-        with open("data/config.json", "r") as fichier:
-            config = json.load(fichier)
+    def __init__(self):
+        self.config_file = "data/config.json"
 
-        connection = mysql.connector.connect(
+    def get_connection(self):
+        with open(self.config_file, "r", encoding="utf-8") as f:
+            config = json.load(f)
+        conn = mysql.connector.connect(
             host=config["host"],
             user=config["user"],
             password=config["password"],
             database=config["database"]
         )
-        return connection
+        return conn
 
     def insert_salle(self, salle):
-        connection = self.get_connection()
-        cursor = connection.cursor()
-        requete = "INSERT INTO salle (code, libelle, type, capacite) VALUES (%s, %s, %s, %s)"
-        valeurs = (salle.code, salle.libelle, salle.type, salle.capacite)
-        cursor.execute(requete, valeurs)
-        connection.commit()
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = "INSERT INTO salle (code, libelle, type, capacite) VALUES (%s, %s, %s, %s)"
+        cursor.execute(query, (salle.code, salle.libelle, salle.type, salle.capacite))
+        conn.commit()
         cursor.close()
-        connection.close()
+        conn.close()
 
     def update_salle(self, salle):
-        connection = self.get_connection()
-        cursor = connection.cursor()
-        requete = "UPDATE salle SET libelle=%s, type=%s, capacite=%s WHERE code=%s"
-        valeurs = (salle.libelle, salle.type, salle.capacite, salle.code)
-        cursor.execute(requete, valeurs)
-        connection.commit()
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = "UPDATE salle SET libelle=%s, type=%s, capacite=%s WHERE code=%s"
+        cursor.execute(query, (salle.libelle, salle.type, salle.capacite, salle.code))
+        conn.commit()
         cursor.close()
-        connection.close()
-
+        conn.close()
     def delete_salle(self, code):
-        connection = self.get_connection()
-        cursor = connection.cursor()
-        requete = "DELETE FROM salle WHERE code=%s"
-        cursor.execute(requete, (code,))
-        connection.commit()
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = "DELETE FROM salle WHERE code=%s"
+        cursor.execute(query, (code,))
+        conn.commit()
         cursor.close()
-        connection.close()
+        conn.close()
 
     def get_salle(self, code):
-        connection = self.get_connection()
-        cursor = connection.cursor()
-        requete = "SELECT * FROM salle WHERE code=%s"
-        cursor.execute(requete, (code,))
-        resultat = cursor.fetchone()
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = "SELECT code, libelle, type, capacite FROM salle WHERE code=%s"
+        cursor.execute(query, (code,))
+        row = cursor.fetchone()
         cursor.close()
-        connection.close()
+        conn.close()
 
-        if resultat:
-            return resultat
+        if row:
+            return Salle(row[0], row[1], row[2], row[3])
         return None
 
     def get_salles(self):
-        connection = self.get_connection()
-        cursor = connection.cursor()
-        requete = "SELECT * FROM salle"
-        cursor.execute(requete)
-        resultats = cursor.fetchall()
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = "SELECT code, libelle, type, capacite FROM salle"
+        cursor.execute(query)
+        rows = cursor.fetchall()
         cursor.close()
-        connection.close()
-        return resultats
+        conn.close()
 
-
-
+        salles = []
+        for row in rows:
+            salles.append(Salle(row[0], row[1], row[2], row[3]))
+        return salles

@@ -1,41 +1,48 @@
-from enum import nonmember
-
-from mysql.connector.constants import flag_is_set
-
-
-class ServiceSalle:
-    pass
 from data.dao_salle import DataSalle
+
 
 class ServiceSalle:
     def __init__(self):
         self.dao_salle = DataSalle()
+
     def ajouter_salle(self, salle):
-        if salle.code and salle.libelle and salle.type and salle.capacite >= 1:
-            self.dao_salle.insert_salle(salle)
-            return True
-        return False
-    def ajouter_salle(self, salle):
-        if salle.code and salle.libelle and salle.type and salle.capacite >= 1:
-            self.dao_salle.insert_salle(salle)
-            return True, "Salle ajouter avec succes"
-        return False, "Erreur lors de l'ajout de la salle"
+        if not salle.code or not salle.libelle or not salle.type or salle.capacite is None:
+            return False, "Tous les champs sont obligatoires"
+
+        if int(salle.capacite) < 1:
+            return False, "La capacité doit être supérieure ou égale à 1"
+
+        if self.dao_salle.get_salle(salle.code):
+            return False, "Une salle avec ce code existe déjà"
+
+        self.dao_salle.insert_salle(salle)
+        return True, "Salle ajoutée avec succès"
+
     def modifier_salle(self, salle):
-        if salle.code and salle.libelle and salle.type and salle.capacite >= 1:
-            self.dao_salle.update_salle(salle)
-            return True, "Salle modifiee avec succes"
-        return False, "Erreur lors de la modification"
+        if not salle.code or not salle.libelle or not salle.type or salle.capacite is None:
+            return False, "Tous les champs sont obligatoires"
+
+        if int(salle.capacite) < 1:
+            return False, "La capacité doit être supérieure ou égale à 1"
+
+        if not self.dao_salle.get_salle(salle.code):
+            return False, "Salle introuvable"
+
+        self.dao_salle.update_salle(salle)
+        return True, "Salle modifiée avec succès"
     def supprimer_salle(self, code):
-        if code:
-            self.dao_salle.delete_salle(code)
-            return True, "Salle supprimee avec succes"
-        return False, "Erreur lors de la suppression"
+        if not code:
+            return False, "Le code est obligatoire"
+
+        if not self.dao_salle.get_salle(code):
+            return False, "Salle introuvable"
+
+        self.dao_salle.delete_salle(code)
+        return True, "Salle supprimée avec succès"
     def rechercher_salle(self, code):
-        if code:
-            resultat = self.dao_salle.get_salle(code)
-            return resultat
-        return None
-    def recuperer_salle(self):
-        return self.dao_salle.get_salle("A06")
+        if not code:
+            return None
+        return self.dao_salle.get_salle(code)
 
-
+    def recuperer_salles(self):
+        return self.dao_salle.get_salles()

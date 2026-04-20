@@ -4,8 +4,5 @@ class Salle:
         self.libelle = libelle
         self.type = type
         self.capacite = capacite
-    def afficher_infos(self):
-        print("code:", self.code)
-        print("libelle:", self.libelle)
-        print("type:", self.type)
-        print("capacite:", self.capacite)
+    def afficher_info(self):
+       return self.code, self.libelle, self.type, self.capacite
