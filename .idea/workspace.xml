@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3d4df9a-18b9-40e5-a025-8ba29b30ad0f" name="Changes" comment="" />
+    <list default="true" id="e3d4df9a-18b9-40e5-a025-8ba29b30ad0f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../ app_gestion_salles/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ app_gestion_salles/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ app_gestion_salles/views/view_salle.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ app_gestion_salles/views/view_salle.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776554391458</updated>
-      <workItem from="1776554392481" duration="36223000" />
+      <workItem from="1776554392481" duration="36559000" />
     </task>
     <servers />
   </component>
@@ -78,10 +81,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/_app_gestion_salles_$view_salle.coverage" NAME="view_salle Coverage Results" MODIFIED="1776642997441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles/views" />
+    <SUITE FILE_PATH="coverage/_app_gestion_salles_$view_salle.coverage" NAME="view_salle Coverage Results" MODIFIED="1776643607719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles/views" />
     <SUITE FILE_PATH="coverage/_app_gestion_salles_$salle.coverage" NAME="salle Coverage Results" MODIFIED="1776560815680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles/models" />
     <SUITE FILE_PATH="coverage/_app_gestion_salles_$service_salle.coverage" NAME="service_salle Coverage Results" MODIFIED="1776589314304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles/services" />
-    <SUITE FILE_PATH="coverage/_app_gestion_salles_$main.coverage" NAME="main Coverage Results" MODIFIED="1776635063737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles" />
+    <SUITE FILE_PATH="coverage/_app_gestion_salles_$main.coverage" NAME="main Coverage Results" MODIFIED="1776643535923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles" />
     <SUITE FILE_PATH="coverage/_app_gestion_salles_$dao_salle.coverage" NAME="dao_salle Coverage Results" MODIFIED="1776582667381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../ app_gestion_salles/data" />
   </component>
 </project>
