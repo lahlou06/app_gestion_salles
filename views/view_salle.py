@@ -80,6 +80,12 @@ class ViewSalle(ctk.CTk):
                     def rechercher_salle(self):
                         code = self.entry_code.get()
                         salle = self.service_salle.rechercher_salle(code)
+                        if salle is not None:
+                            self.entry_description.delete(0, "end")
+                            self.entry_description.insert(0, salle.description)
 
+                            self.entry_categorie.delete(0, "end")
+                            self.entry_categorie.insert(0, salle.categorie)
 
-
+                            self.entry_capacite.delete(0, "end")
+                            self.entry_capacite.insert(0, salle.capacite)
