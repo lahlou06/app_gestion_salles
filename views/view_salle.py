@@ -4,6 +4,7 @@ from tkinter import ttk, messagebox
 from models.salle import Salle
 from services.service_salle import ServiceSalle
 
+
 class ViewSalle(ctk.CTk):
     def _init_(self):
         super()._init_()
@@ -59,4 +60,14 @@ class ViewSalle(ctk.CTk):
                     int(self.entry_capacite.get())
                 )
                 self.service_salle.ajouter_salle(salle)
+                self.lister_salles()
+
+            def modifier_salle(self):
+                salle = Salle(
+                    self.entry_code.get(),
+                    self.entry_description.get(),
+                    self.entry_categorie.get(),
+                    int(self.entry_capacite.get())
+                )
+                self.service_salle.modifier_salle(salle)
                 self.lister_salles()
